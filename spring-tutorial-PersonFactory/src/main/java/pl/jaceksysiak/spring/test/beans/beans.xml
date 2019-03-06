@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="init" default-destroy-method="destroy">
+
+
+	<bean id="person" class="pl.jaceksysiak.spring.test.Person"
+		scope="singleton" init-method="onCreate" destroy-method="onDestroy"
+		factory-method="getInstance">
+
+	<constructor-arg value="111" name="id" type="int">
+	</constructor-arg>
+
+	<constructor-arg value="Jacek" name="name"
+		type="java.lang.String">
+	</constructor-arg>
+	
+	<property name="taxId" value="123"></property>
+	
+	<property name="address" ref="address"></property>
+	</bean>
+	
+	
+	
+	
+	<bean id="person2" class="pl.jaceksysiak.spring.test.Person"
+		scope="singleton" init-method="onCreate" destroy-method="onDestroy"
+		factory-bean="personfactory" factory-method="createPerson">
+
+	<constructor-arg value="222" name="id" type="int">
+	</constructor-arg>
+
+	<constructor-arg value="Wacek" name="name"
+		type="java.lang.String">
+	</constructor-arg>
+	
+	<property name="taxId" value="44444"></property>
+	
+	<property name="address" ref="address"></property>
+	</bean>
+
+
+
+
+	<bean id="address" class="pl.jaceksysiak.spring.test.Address">
+	<constructor-arg name="street" value="1 Church Lane"></constructor-arg>
+	<constructor-arg name="postcode" value="21-100"></constructor-arg>
+	</bean>
+	
+	<bean id="personfactory"
+		class="pl.jaceksysiak.spring.test.PersonFactory">
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
